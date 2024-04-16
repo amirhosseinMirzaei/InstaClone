@@ -243,8 +243,8 @@ class _BottomNavigationItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(4, 4, 8, 4),
           child: Container(
-            width: 80,
-            height: 46,
+            width: 90,
+            height: 50,
             decoration: BoxDecoration(
                 color: isActive ? Colors.white : null,
                 borderRadius: BorderRadius.circular(50)),
@@ -258,7 +258,11 @@ class _BottomNavigationItem extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   title,
-                  style: themeData.textTheme.caption!,
+                  style: TextStyle(
+                      fontSize: 10,
+                      color: isActive
+                          ? DarktThemeColor.toGradientColor
+                          : Colors.white),
                 )
               ],
             ),

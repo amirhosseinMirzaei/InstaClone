@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled1/data/data.dart';
 import 'package:untitled1/theme.dart';
@@ -17,7 +18,7 @@ class PostList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 517,
-      width: 361,
+      width: 400,
       child: ListView.builder(
           itemCount: posts.length,
           scrollDirection: Axis.vertical,
@@ -121,11 +122,12 @@ class PostItem extends StatelessWidget {
                   )
                 ],
               ),
-              const Expanded(
-                child: Icon(
-                  CupertinoIcons.ellipsis_vertical,
-                  color: DarktThemeColor.secondaryTextColor,
-                ),
+              Expanded(
+                child: Container(),
+              ),
+              const Icon(
+                CupertinoIcons.ellipsis_vertical,
+                color: DarktThemeColor.secondaryTextColor,
               ),
             ],
           ),
@@ -147,43 +149,64 @@ class PostItem extends StatelessWidget {
             height: 12,
           ),
           _StatusBar(post: post),
-          InkWell(
-            onTap: () {
-              showCupertinoModalPopup(
-                context: context,
-                builder: (context) {
-                  return NotificationListener<ScrollNotification>(
-                    onNotification: (scrollNotification) {
-                      if (scrollNotification is ScrollUpdateNotification &&
-                          scrollNotification.metrics.axisDirection ==
-                              AxisDirection.down) {
-                        // Check if the user is scrolling down
-                        Navigator.of(context).pop();
-                        return true; // Consume the notification to prevent it from bubbling up
-                      }
-                      return false; // Let other listeners handle the notification
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Divider(
+              height: 1,
+              color: Color(0xffF8F8F8).withOpacity(0.5),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Created 30 Jun 2023',
+                style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    color: DarktThemeColor.secondaryTextColor),
+              ),
+              InkWell(
+                onTap: () {
+                  showCupertinoModalPopup(
+                    context: context,
+                    builder: (context) {
+                      return NotificationListener<ScrollNotification>(
+                        onNotification: (scrollNotification) {
+                          if (scrollNotification is ScrollUpdateNotification &&
+                              scrollNotification.metrics.axisDirection ==
+                                  AxisDirection.down) {
+                            // Check if the user is scrolling down
+                            Navigator.of(context).pop();
+                            return true; // Consume the notification to prevent it from bubbling up
+                          }
+                          return false; // Let other listeners handle the notification
+                        },
+                        child: const BidBottomSheet(),
+                      );
                     },
-                    child: BidBottomSheet(),
                   );
                 },
-              );
-            },
-            child: Container(
-              width: 59,
-              height: 30,
-              decoration: BoxDecoration(
-                  gradient:
-                      const LinearGradient(begin: Alignment.topLeft, colors: [
-                    DarktThemeColor.begGradientColor,
-                    DarktThemeColor.toGradientColor,
-                    DarktThemeColor.endGradientColor,
-                  ]),
-                  borderRadius: BorderRadius.circular(15)),
-              child: const Center(
-                child: Text('Bid',
-                    style: TextStyle(color: DarktThemeColor.primaryTextColor)),
+                child: Container(
+                  width: 59,
+                  height: 30,
+                  decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          colors: [
+                            DarktThemeColor.begGradientColor,
+                            DarktThemeColor.toGradientColor,
+                            DarktThemeColor.endGradientColor,
+                          ]),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: const Center(
+                    child: Text('Bid',
+                        style:
+                            TextStyle(color: DarktThemeColor.primaryTextColor)),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
@@ -214,16 +237,36 @@ class _StatusBar extends StatelessWidget {
         ),
         Text(
           post.likes,
-          style: TextStyle(color: DarktThemeColor.secondaryTextColor),
+          style: const TextStyle(color: DarktThemeColor.secondaryTextColor),
         ),
-        SizedBox(
-          width: 10,
+        const SizedBox(
+          width: 15,
         ),
-        Image.asset(
-          'assets/img/icons/Comment.png',
-          color: DarktThemeColor.primaryTextColor,
-          width: 24,
-          height: 24,
+        InkWell(
+          onTap: () {
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return NotificationListener<ScrollNotification>(
+                  onNotification: (scrollNotification) {
+                    if (scrollNotification is ScrollUpdateNotification &&
+                        scrollNotification.metrics.axisDirection ==
+                            AxisDirection.down) {
+                      // Check if the user is scrolling down
+                      Navigator.of(context).pop();
+                      return true; // Consume the notification to prevent it from bubbling up
+                    }
+                    return false; // Let other listeners handle the notification
+                  },
+                  child: const BottomSheetComment(),
+                );
+              },
+            );
+          },
+          child: const Icon(
+            CupertinoIcons.chat_bubble,
+            color: DarktThemeColor.secondaryTextColor,
+          ),
         ),
         const SizedBox(
           width: 3,
@@ -233,7 +276,7 @@ class _StatusBar extends StatelessWidget {
           style: TextStyle(color: DarktThemeColor.secondaryTextColor),
         ),
         const SizedBox(
-          width: 10,
+          width: 15,
         ),
         Image.asset(
           'assets/img/icons/interaction.png',
@@ -246,10 +289,10 @@ class _StatusBar extends StatelessWidget {
         ),
         Text(
           post.interaction,
-          style: TextStyle(color: DarktThemeColor.secondaryTextColor),
+          style: const TextStyle(color: DarktThemeColor.secondaryTextColor),
         ),
         const SizedBox(
-          width: 10,
+          width: 15,
         ),
         Image.asset(
           'assets/img/icons/forward.png',
@@ -268,7 +311,7 @@ class _StatusBar extends StatelessWidget {
         ),
         Text(
           post.view,
-          style: TextStyle(color: DarktThemeColor.secondaryTextColor),
+          style: const TextStyle(color: DarktThemeColor.secondaryTextColor),
         ),
         const Text(
           'View',

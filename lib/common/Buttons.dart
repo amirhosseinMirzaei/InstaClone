@@ -19,13 +19,13 @@ class PinkButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: Color(0xffF37381),
             foregroundColor: Colors.white,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20))),
+                borderRadius: BorderRadius.circular(100))),
         onPressed: callback,
         child: Text(
           text,
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
         ),
       ),
     );
