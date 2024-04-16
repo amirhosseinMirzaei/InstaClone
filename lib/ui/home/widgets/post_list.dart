@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:untitled1/data/data.dart';
 import 'package:untitled1/theme.dart';
 import 'package:untitled1/ui/home/widgets/BottomSheet.dart';
@@ -159,9 +160,9 @@ class PostItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Created 30 Jun 2023',
-                style: TextStyle(
+              Text(
+                'Created ${DateFormat.yMMMd().format(post.dateTime)}',
+                style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                     color: DarktThemeColor.secondaryTextColor),

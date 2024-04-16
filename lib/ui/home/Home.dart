@@ -16,7 +16,14 @@ class HomeScreen extends StatelessWidget {
     final stories = AppDatabase.stories;
     final posts = AppDatabase.posts;
     return Scaffold(
-      appBar: _buildAppbar(),
+      appBar: AppBar(
+        backgroundColor: DarktThemeColor.primaryColor,
+        centerTitle: false,
+        title: Image.asset(
+          'assets/img/icons/appBar.png',
+          width: 200,
+        ),
+      ),
       backgroundColor: DarktThemeColor.primaryColor,
       body: SafeArea(
           child: SingleChildScrollView(
@@ -36,16 +43,25 @@ class HomeScreen extends StatelessWidget {
       )),
     );
   }
+}
 
-  AppBar _buildAppbar() {
-    return AppBar(
-      backgroundColor: DarktThemeColor.primaryColor,
-      actions: [
-        Image.asset(
+class ApplicationToolbar extends StatelessWidget
+    implements PreferredSizeWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Container(
+        height: 200,
+        color: DarktThemeColor.primaryColor,
+        child: Image.asset(
           'assets/img/icons/appBar.png',
           width: 393,
         ),
-      ],
+      ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

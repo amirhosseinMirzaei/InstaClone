@@ -158,7 +158,8 @@ class BidBottomSheet extends StatelessWidget {
             width: 400,
             height: 44,
             child: CupertinoTextField(
-              placeholder: '     New Price',
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              placeholder: 'New Price',
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Color(0xffF6F6F6),

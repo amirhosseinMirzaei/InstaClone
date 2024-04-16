@@ -22,6 +22,7 @@ class PostData {
   final String view;
   final String imageFileName;
   final String profileImage;
+  final DateTime dateTime;
 
   PostData(
       {required this.id,
@@ -32,7 +33,8 @@ class PostData {
       required this.interaction,
       required this.view,
       required this.imageFileName,
-      required this.profileImage});
+      required this.profileImage,
+      required this.dateTime});
 }
 
 class AppDatabase {
@@ -84,16 +86,18 @@ class AppDatabase {
   static List<PostData> get posts {
     return [
       PostData(
-          userName: 'albert901',
-          caption:
-              'What do you think about AI? You are thinking of a limited scale or should be the development of the next step? Maybe humanity doesn’t ready for this situation. Who knows?  #AI #humanity #chatgpt #ArtificialIntelligence',
-          likes: '245k',
-          imageFileName: 'post1.png',
-          personName: 'Albert 901',
-          id: 3,
-          interaction: '256K',
-          view: '20K',
-          profileImage: 'story_2.jpg'),
+        userName: 'albert901',
+        caption:
+            'What do you think about AI? You are thinking of a limited scale or should be the development of the next step? Maybe humanity doesn’t ready for this situation. Who knows?  #AI #humanity #chatgpt #ArtificialIntelligence',
+        likes: '245k',
+        imageFileName: 'post1.png',
+        personName: 'Albert 901',
+        id: 3,
+        interaction: '256K',
+        view: '20K',
+        profileImage: 'story_2.jpg',
+        dateTime: DateTime.now(),
+      ),
       PostData(
           id: 0,
           caption:
@@ -104,7 +108,8 @@ class AppDatabase {
           userName: 'Ayemunt',
           interaction: '250K',
           view: '30K',
-          profileImage: 'story_4.jpg'),
+          profileImage: 'story_4.jpg',
+          dateTime: DateTime.now().subtract(const Duration(days: 40))),
     ];
   }
 }
