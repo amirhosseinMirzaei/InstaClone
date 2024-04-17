@@ -176,6 +176,7 @@ class BidBottomSheet extends StatelessWidget {
             width: 400,
             height: 44,
             child: CupertinoTextField(
+              keyboardAppearance: Brightness.dark,
               padding: const EdgeInsets.symmetric(horizontal: 24),
               placeholder: 'New Price',
               decoration: BoxDecoration(
@@ -218,7 +219,7 @@ class BidBottomSheet extends StatelessWidget {
               showCupertinoModalPopup(
                   context: context,
                   builder: (context) {
-                    return BottomSheetSuccess();
+                    return const BottomSheetSuccess();
                   });
             },
           ),
@@ -542,6 +543,7 @@ class _BottomSheetCommentState extends State<BottomSheetComment> {
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * 0.8,
                     child: CupertinoTextField(
+                      keyboardAppearance: Brightness.dark,
                       focusNode: comment_focus,
                       autofocus: true,
                       padding: EdgeInsets.fromLTRB(20, 0, 8, 0),
