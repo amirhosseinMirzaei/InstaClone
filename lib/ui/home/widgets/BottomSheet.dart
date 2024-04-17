@@ -4,12 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:untitled1/common/Buttons.dart';
+import 'package:untitled1/data/data.dart';
 import 'package:untitled1/theme.dart';
 
 class BidBottomSheet extends StatelessWidget {
+  final PostData post;
   const BidBottomSheet({
     super.key,
+    required this.post,
   });
 
   @override
@@ -64,36 +68,36 @@ class BidBottomSheet extends StatelessWidget {
             height: 15,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 0, 16),
+            padding: const EdgeInsets.fromLTRB(20, 16, 0, 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 ClipRRect(
                   child: Image.asset(
-                    'assets/img/stories/story_1.jpg',
+                    'assets/img/stories/${post.profileImage}',
                     width: 44,
                     height: 44,
                   ),
                   borderRadius: BorderRadius.circular(22),
                 ),
                 const SizedBox(
-                  width: 6,
+                  width: 10,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const Text(
-                          'Damla',
-                          style: TextStyle(
+                        Text(
+                          post.personName,
+                          style: const TextStyle(
                               decoration: TextDecoration.none,
                               color: DarktThemeColor.primaryTextColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 16),
                         ),
                         const SizedBox(
-                          width: 3,
+                          width: 2,
                         ),
                         Image.asset(
                           'assets/img/icons/verified.png',
@@ -104,13 +108,27 @@ class BidBottomSheet extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    const Text(
-                      'Ayemnut.moseiki.app',
-                      style: TextStyle(
-                          decoration: TextDecoration.none,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
-                          color: DarktThemeColor.secondaryTextColor),
+                    Row(
+                      children: [
+                        Text('Ayemnut.moseiki.app',
+                            style: themeData.textTheme.titleSmall),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Container(
+                          width: 4,
+                          height: 4,
+                          decoration: BoxDecoration(
+                              color: DarktThemeColor.secondaryTextColor,
+                              borderRadius: BorderRadius.circular(3)),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                            'Created ${DateFormat.yMMMd().format(post.dateTime)}',
+                            style: themeData.textTheme.titleSmall),
+                      ],
                     ),
                   ],
                 ),
@@ -124,7 +142,7 @@ class BidBottomSheet extends StatelessWidget {
               width: 400,
               height: 44,
               child: Container(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 decoration: BoxDecoration(
                   color: Color(0xffF6F6F6),
                   borderRadius: BorderRadius.circular(25),
@@ -158,11 +176,35 @@ class BidBottomSheet extends StatelessWidget {
             width: 400,
             height: 44,
             child: CupertinoTextField(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               placeholder: 'New Price',
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
                 color: Color(0xffF6F6F6),
+              ),
+              suffix: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2),
+                child: Container(
+                  width: 88,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: const Color(0xff3C3D41)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/img/icons/ETH.png'),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        'ETH',
+                        style: themeData.textTheme.bodyLarge!
+                            .copyWith(fontSize: 14),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
@@ -454,32 +496,35 @@ class _BottomSheetCommentState extends State<BottomSheetComment> {
           const SizedBox(
             height: 40,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text(
-                'Reaction',
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: DarktThemeColor.primaryTextColor),
-              ),
-              EmojiButton(emoji: '😊'),
-              EmojiButton(emoji: '😂'),
-              EmojiButton(emoji: '😍'),
-              EmojiButton(emoji: '👍'),
-              EmojiButton(emoji: '👎'),
-              EmojiButton(emoji: '😢'),
-              Container(
-                width: 1,
-                height: 25,
-                decoration: const BoxDecoration(
-                    color: DarktThemeColor.secondaryTextColor),
-              ),
-              Image.asset('assets/img/icons/smile.png'),
-              Image.asset('assets/img/icons/Gif.png'),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 9),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  'Reaction',
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: DarktThemeColor.primaryTextColor),
+                ),
+                EmojiButton(emoji: '😊'),
+                EmojiButton(emoji: '😂'),
+                EmojiButton(emoji: '😍'),
+                EmojiButton(emoji: '👍'),
+                EmojiButton(emoji: '👎'),
+                EmojiButton(emoji: '😢'),
+                Container(
+                  width: 1,
+                  height: 25,
+                  decoration: const BoxDecoration(
+                      color: DarktThemeColor.secondaryTextColor),
+                ),
+                Image.asset('assets/img/icons/smile.png'),
+                Image.asset('assets/img/icons/Gif.png'),
+              ],
+            ),
           ),
           const SizedBox(
             height: 10,
@@ -492,7 +537,7 @@ class _BottomSheetCommentState extends State<BottomSheetComment> {
                 children: [
                   Image.asset('assets/img/icons/Image.png'),
                   const SizedBox(
-                    width: 4,
+                    width: 10,
                   ),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * 0.8,

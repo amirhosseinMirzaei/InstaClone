@@ -160,13 +160,8 @@ class PostItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Created ${DateFormat.yMMMd().format(post.dateTime)}',
-                style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: DarktThemeColor.secondaryTextColor),
-              ),
+              Text('created ${DateFormat.yMMMd().format(post.dateTime)}',
+                  style: themeData.textTheme.titleSmall),
               InkWell(
                 onTap: () {
                   showCupertinoModalPopup(
@@ -183,7 +178,9 @@ class PostItem extends StatelessWidget {
                           }
                           return false; // Let other listeners handle the notification
                         },
-                        child: const BidBottomSheet(),
+                        child: BidBottomSheet(
+                          post: post,
+                        ),
                       );
                     },
                   );
@@ -238,7 +235,7 @@ class _StatusBar extends StatelessWidget {
         ),
         Text(
           post.likes,
-          style: const TextStyle(color: DarktThemeColor.secondaryTextColor),
+          style: themeData.textTheme.titleSmall,
         ),
         const SizedBox(
           width: 15,

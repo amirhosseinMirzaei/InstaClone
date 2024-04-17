@@ -95,7 +95,7 @@ class AppDatabase {
         id: 3,
         interaction: '256K',
         view: '20K',
-        profileImage: 'story_2.jpg',
+        profileImage: 'story_10.jpg',
         dateTime: DateTime.now(),
       ),
       PostData(

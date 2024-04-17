@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled1/root.dart';
+import 'package:untitled1/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    return const MaterialApp(
+    return MaterialApp(
+      theme: themeData,
       debugShowCheckedModeBanner: false,
       home: MainScreen(),
     );
