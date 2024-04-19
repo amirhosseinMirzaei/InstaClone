@@ -1,4 +1,4 @@
-# untitled1
+# InstaClone
 
 A new Flutter project.
 
