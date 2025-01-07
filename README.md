@@ -21,6 +21,7 @@
 ## About
 
 This project is a starting point for a Flutter application, inspired by Instagram's UI and functionality.
+Responsive Design Mastery : Implemented responsive design practices, ensuring seamless user experiences across various devices and screen sizes.
 
 ## Features
 
