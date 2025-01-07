@@ -2,17 +2,33 @@
 
 A new Flutter project.
 
-![InstaClone Preview](./assets/img/posts/1.png)
 
+<div style="display: flex; justify-content: space-around; align-items: center;">
+  <img src="./assets/img/posts/1.png" alt="InstaClone Preview 1" width="300" style="margin-right: 10px;"/>
+  <img src="./assets/img/posts/‌Bid.png" alt="InstaClone Preview 2" width="300" style="margin-right: 10px;"/>
+  <img src="./assets/img/posts/Bid - Amount.png" alt="InstaClone Preview 3" width="300"/>
+  <img src="./assets/img/posts/Bid - Success" alt="InstaClone Preview 4" width="300"/>
+</div>
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+# InstaClone
 
-A few resources to get you started if this is your first Flutter project:
+A new Flutter project.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## About
+
+This project is a starting point for a Flutter application, inspired by Instagram's UI and functionality.
+
+## Features
+
+- Social interactions (likes, comments)
+- omplexity in User Interface
+
+## How to Run
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/instaclone.git
+
