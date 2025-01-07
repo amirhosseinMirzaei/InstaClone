@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![InstaClone Preview](./assets/img/posts/1.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
